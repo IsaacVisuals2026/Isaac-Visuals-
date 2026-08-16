@@ -161,21 +161,29 @@
           <p>Fill in the details below and send your order directly to Isaac Visuals on WhatsApp.</p>
 
           <form onsubmit="placeOrder(event)">
-            <input id="name" type="text" placeholder="Your name" required>
+            <label for="name">Name
+              <input id="name" name="name" type="text" placeholder="Your name" required>
+            </label>
 
-            <select id="design" required>
-              <option value="">Select design type</option>
-              <option>Flyer</option>
-              <option>Logo</option>
-              <option>Banner</option>
-              <option>Branding</option>
-              <option>Social Media Design</option>
-              <option>Other</option>
-            </select>
+            <label for="design">Design type
+              <select id="design" name="design" required>
+                <option value="">Select design type</option>
+                <option>Flyer</option>
+                <option>Logo</option>
+                <option>Banner</option>
+                <option>Branding</option>
+                <option>Social Media Design</option>
+                <option>Other</option>
+              </select>
+            </label>
 
-            <textarea id="details" placeholder="Describe what you want..." required></textarea>
+            <label for="details">Project details
+              <textarea id="details" name="details" placeholder="Describe what you want..." required></textarea>
+            </label>
 
-            <input id="deadline" type="text" placeholder="When do you need it?">
+            <label for="deadline">Deadline
+              <input id="deadline" name="deadline" type="text" placeholder="When do you need it?">
+            </label>
 
             <button class="btn primary" type="submit">
               Place Order on WhatsApp
@@ -204,8 +212,9 @@ Design: ${design}
 Details: ${details}
 Deadline: ${deadline}`;
 
+      // Use the same phone number as the contact link (07014596301 -> international format 2347014596301)
       const whatsapp =
-        "https://wa.me/2347014597301?text=" +
+        "https://wa.me/2347014596301?text=" +
         encodeURIComponent(message);
 
       window.location.href = whatsapp;
