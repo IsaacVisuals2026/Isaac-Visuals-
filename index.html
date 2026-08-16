@@ -153,36 +153,65 @@
       </div>
     </section>
 
-    <section id="order" class="order-section">
-      <div class="order-wrap">
-        <div class="order-copy">
-          <p class="eyebrow"><span></span> HAVE A PROJECT?</p>
-          <h2>Let's turn your<br><em>idea into a visual.</em></h2>
-          <p>Tell me what you need. Your request will be prepared as a WhatsApp message so you can send it directly once your business number is connected.</p>
-          <div class="order-note">FAST • CREATIVE • PROFESSIONAL</div>
-        </div>
+    <section id="order">
+      <div class="wrap">
+        <div class="contact">
+          <div class="eyebrow">PLACE AN ORDER</div>
+          <h2>Order your design</h2>
+          <p>Fill in the details below and send your order directly to Isaac Visuals on WhatsApp.</p>
 
-        <form id="orderForm" class="order-form">
-          <label>Name<input required name="name" type="text" placeholder="Your name"></label>
-          <label>Design type
-            <select required name="design">
-              <option value="">Choose a service</option>
-              <option>Flyer / Poster</option>
-              <option>Logo / Brand Identity</option>
-              <option>Church / Event Graphics</option>
+          <form onsubmit="placeOrder(event)">
+            <input id="name" type="text" placeholder="Your name" required>
+
+            <select id="design" required>
+              <option value="">Select design type</option>
+              <option>Flyer</option>
+              <option>Logo</option>
+              <option>Banner</option>
+              <option>Branding</option>
               <option>Social Media Design</option>
-              <option>Business Card</option>
-              <option>Banner / Roll-Up</option>
-              <option>Packaging / Mockup</option>
               <option>Other</option>
             </select>
-          </label>
-          <label>Project details<textarea required name="details" rows="5" placeholder="Tell me about the design you need..."></textarea></label>
-          <button class="btn primary full" type="submit">Prepare my order <span>↗</span></button>
-          <p id="formMessage" class="form-message"></p>
-        </form>
+
+            <textarea id="details" placeholder="Describe what you want..." required></textarea>
+
+            <input id="deadline" type="text" placeholder="When do you need it?">
+
+            <button class="btn primary" type="submit">
+              Place Order on WhatsApp
+            </button>
+          </form>
+        </div>
       </div>
     </section>
+
+    <script>
+    function placeOrder(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const design = document.getElementById("design").value;
+      const details = document.getElementById("details").value;
+      const deadline = document.getElementById("deadline").value || "Not specified";
+
+      const message =
+`Hello Isaac Visuals 👋
+
+I want to place an order.
+
+Name: ${name}
+Design: ${design}
+Details: ${details}
+Deadline: ${deadline}`;
+
+      const whatsapp =
+        "https://wa.me/2347014597301?text=" +
+        encodeURIComponent(message);
+
+      window.location.href = whatsapp;
+    }
+    </script>
+
   </main>
 
   <footer>
