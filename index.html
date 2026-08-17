@@ -147,118 +147,199 @@
       <div class="contact-grid">
         <div class="contact-info">
           <p><strong>WhatsApp</strong></p>
-          <p><a id="contactWhatsApp" href="tel:07014596301">07014596301</a></p>
+          <p><a id="contactWhatsApp" href="tel:07014597301">07014597301</a></p>
           <p class="contact-note">Tap to call or open WhatsApp from your device.</p>
         </div>
       </div>
     </section>
 
-    <section id="order">
-      <div class="wrap">
-        <div class="contact">
-          <div class="eyebrow">PLACE AN ORDER</div>
-          <h2>Order your design</h2>
-          <p>Fill in the details below and send your order directly to Isaac Visuals on WhatsApp.</p>
+    <section id="order" class="section order-section">
+      <div class="wrap order-wrap">
+        <div class="order-grid">
+          <div class="order-card" aria-labelledby="orderHeading">
+            <div class="eyebrow">PLACE AN ORDER</div>
+            <h2 id="orderHeading">Order your design</h2>
+            <p class="muted">Fill in the details below and send your brief directly to Isaac Visuals on WhatsApp. Fields marked * are required.</p>
 
-          <form onsubmit="placeOrder(event)">
-            <label for="name">Name
-              <input id="name" name="name" type="text" placeholder="Your name" required>
-            </label>
+            <form id="orderForm" novalidate>
+              <div class="form-row">
+                <label for="name">Full name *</label>
+                <input id="name" name="name" type="text" placeholder="Your full name" required>
+              </div>
 
-            <label for="design">Design type
-              <select id="design" name="design" required>
-                <option value="">Select design type</option>
-                <option>Flyer</option>
-                <option>Logo</option>
-                <option>Banner</option>
-                <option>Branding</option>
-                <option>Social Media Design</option>
-                <option>Other</option>
-              </select>
-            </label>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com">
+              </div>
 
-            <label for="details">Project details
-              <textarea id="details" name="details" placeholder="Describe what you want..." required></textarea>
-            </label>
+              <div class="form-row">
+                <label for="phone">Phone number *</label>
+                <input id="phone" name="phone" type="tel" placeholder="0701 459 7301" required>
+                <small class="muted">Tap the button to open WhatsApp with your message</small>
+              </div>
 
-            <label for="deadline">Deadline
-              <input id="deadline" name="deadline" type="text" placeholder="When do you need it?">
-            </label>
+              <div class="form-row">
+                <label for="design">Design type *</label>
+                <select id="design" name="design" required>
+                  <option value="">Select design type</option>
+                  <option>Flyer</option>
+                  <option>Logo</option>
+                  <option>Banner</option>
+                  <option>Branding</option>
+                  <option>Social Media Design</option>
+                  <option>Other</option>
+                </select>
+              </div>
 
-            <label for="location">Location
-              <select id="location" name="location" required>
-                <option value="">Select location</option>
-                <option value="Remote / Online">Remote / Online</option>
-                <option value="Lagos (On-site)">Lagos (On-site)</option>
-                <option value="Abuja (On-site)">Abuja (On-site)</option>
-                <option value="Other">Other (specify)</option>
-              </select>
-            </label>
+              <div class="form-row">
+                <label for="details">Project brief *</label>
+                <textarea id="details" name="details" placeholder="Describe what you want..." rows="5" required></textarea>
+              </div>
 
-            <label for="locationOther" id="locationOtherLabel" style="display:none;">Specify location
-              <input id="locationOther" name="locationOther" type="text" placeholder="Enter location">
-            </label>
+              <div class="form-row two-up">
+                <div>
+                  <label for="deadline">Deadline</label>
+                  <input id="deadline" name="deadline" type="date">
+                </div>
+                <div>
+                  <label for="budget">Budget (optional)</label>
+                  <input id="budget" name="budget" type="text" placeholder="e.g. ₦5,000 - ₦20,000">
+                </div>
+              </div>
 
-            <button class="btn primary" type="submit">
-              Place Order on WhatsApp
-            </button>
-          </form>
+              <div class="form-row">
+                <label for="location">Location *</label>
+                <select id="location" name="location" required>
+                  <option value="">Select location</option>
+                  <option value="Remote / Online">Remote / Online</option>
+                  <option value="Lagos (On-site)">Lagos (On-site)</option>
+                  <option value="Abuja (On-site)">Abuja (On-site)</option>
+                  <option value="Other">Other (specify)</option>
+                </select>
+              </div>
+
+              <div class="form-row" id="locationOtherRow" style="display:none;">
+                <label for="locationOther">Specify location</label>
+                <input id="locationOther" name="locationOther" type="text" placeholder="Enter location">
+              </div>
+
+              <div class="form-row">
+                <label for="attachment">Attach reference (optional)</label>
+                <input id="attachment" name="attachment" type="file" accept="image/*,application/pdf">
+                <small class="muted">Images or PDFs only, used to help describe your brief.</small>
+              </div>
+
+              <div class="form-row">
+                <label class="checkbox">
+                  <input id="agree" type="checkbox" required>
+                  <span>I agree to share this brief with Isaac Visuals *</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button id="placeOrderBtn" class="btn primary" type="submit" aria-label="Place order on WhatsApp">
+                  Place order on WhatsApp
+                </button>
+                <button id="clearForm" type="button" class="btn ghost">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="order-side">
+            <div class="side-card">
+              <h3>Why order here?</h3>
+              <ul>
+                <li>Quick responses via WhatsApp</li>
+                <li>Clear, print-ready deliverables</li>
+                <li>Revisions included (details on WhatsApp)</li>
+              </ul>
+              <p><strong>Turnaround:</strong> Typical delivery in 2–5 business days depending on scope.</p>
+              <p class="muted">By placing an order you agree to discuss project details and pricing over WhatsApp.</p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
     <script>
-    // Show/hide "Other" location text input
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', () => {
       const locationSelect = document.getElementById('location');
-      const locationOtherLabel = document.getElementById('locationOtherLabel');
+      const locationOtherRow = document.getElementById('locationOtherRow');
+      const locationOther = document.getElementById('locationOther');
+      const orderForm = document.getElementById('orderForm');
+      const clearBtn = document.getElementById('clearForm');
 
       function toggleOther() {
+        if (!locationSelect) return;
         if (locationSelect.value === 'Other') {
-          locationOtherLabel.style.display = 'block';
-          document.getElementById('locationOther').required = true;
+          locationOtherRow.style.display = 'block';
+          locationOther.required = true;
         } else {
-          locationOtherLabel.style.display = 'none';
-          document.getElementById('locationOther').required = false;
+          locationOtherRow.style.display = 'none';
+          locationOther.required = false;
         }
       }
-
       if (locationSelect) {
         locationSelect.addEventListener('change', toggleOther);
         toggleOther();
       }
+
+      clearBtn.addEventListener('click', () => orderForm.reset());
+
+      orderForm.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        if (!orderForm.checkValidity()) {
+          orderForm.reportValidity();
+          return;
+        }
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const design = document.getElementById('design').value;
+        const details = document.getElementById('details').value.trim();
+        const deadline = document.getElementById('deadline').value || 'Not specified';
+        const budget = document.getElementById('budget').value.trim() || 'Not specified';
+        const locSelectVal = document.getElementById('location').value;
+        const locOtherVal = (locSelectVal === 'Other') ? (document.getElementById('locationOther').value.trim() || 'Not specified') : locSelectVal || 'Not specified';
+
+        // Normalise phone to international format for Nigeria (if it starts with 0)
+        let phoneForWhatsApp = phone.replace(/\s+/g, '');
+        if (phoneForWhatsApp.startsWith('0')) {
+          phoneForWhatsApp = '234' + phoneForWhatsApp.slice(1);
+        } else if (!phoneForWhatsApp.startsWith('234') && !phoneForWhatsApp.startsWith('+')) {
+          // If user entered without country code, assume Nigeria
+          phoneForWhatsApp = '234' + phoneForWhatsApp;
+        }
+        // Remove plus sign if present
+        phoneForWhatsApp = phoneForWhatsApp.replace(/^\+/, '');
+
+        // Use Isaac Visuals phone (updated per your input)
+        const isaacPhone = '2347014597301'; // international format for 07014597301
+
+        const messageLines = [
+          'Hello Isaac Visuals 👋',
+          '',
+          'I want to place an order.',
+          '',
+          `Name: ${name}`,
+          `Email: ${email || 'Not provided'}`,
+          `Phone: ${phone || 'Not provided'}`,
+          `Design: ${design}`,
+          `Budget: ${budget}`,
+          `Deadline: ${deadline}`,
+          `Location: ${locOtherVal}`,
+          '',
+          'Project brief:',
+          details
+        ];
+        const message = messageLines.join('\n');
+
+        const whatsappUrl = 'https://wa.me/' + isaacPhone + '?text=' + encodeURIComponent(message);
+
+        window.open(whatsappUrl, '_blank');
+      });
     });
-
-    function placeOrder(event) {
-      event.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const design = document.getElementById("design").value;
-      const details = document.getElementById("details").value;
-      const deadline = document.getElementById("deadline").value || "Not specified";
-      const locationSelect = document.getElementById("location").value;
-      const locationOther = document.getElementById("locationOther").value;
-
-      const location = (locationSelect === 'Other') ? (locationOther || 'Not specified') : (locationSelect || 'Not specified');
-
-      const message =
-`Hello Isaac Visuals 👋
-
-I want to place an order.
-
-Name: ${name}
-Design: ${design}
-Details: ${details}
-Deadline: ${deadline}
-Location: ${location}`;
-
-      // Use the same phone number as the contact link (07014596301 -> international format 2347014596301)
-      const whatsapp =
-        "https://wa.me/2347014597301?text=" +
-        encodeURIComponent(message);
-
-      window.location.href = whatsapp;
-    }
     </script>
 
   </main>
