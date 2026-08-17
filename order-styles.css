@@ -1,0 +1,66 @@
+/* Order section styles (order-styles.css)
+   Enhances the form inputs and cards for a polished, professional look.
+   Uses root variables from style.css where available. */
+
+/* Layout tweaks (ensure it overrides base styles) */
+.order-wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+.order-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+
+/* Card look */
+.order-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 28px; border-radius: 14px; box-shadow: 0 10px 30px rgba(3,6,12,0.6);
+}
+.order-card .eyebrow { color: var(--muted); font-weight:700; }
+.order-card h2 { margin: 6px 0 10px; font-size: 26px; }
+.order-card .muted { color: var(--muted); font-size: 0.95rem; }
+
+/* Inputs and selects */
+.form-row label { display:block; font-weight:600; margin-bottom:8px; color: #e6e8ee; }
+.form-row input[type="text"], .form-row input[type="email"], .form-row input[type="tel"],
+.form-row input[type="date"], .form-row input[type="file"], .form-row select, .form-row textarea {
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:var(--text);
+  outline:none; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2);
+  transition: box-shadow .18s ease, border-color .18s ease, transform .06s ease;
+  font-size: 15px; line-height:1.4;
+}
+.form-row textarea { min-height:120px; resize:vertical; }
+.form-row input::placeholder, .form-row textarea::placeholder { color: rgba(255,255,255,0.45); }
+
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+  box-shadow: 0 6px 18px rgba(65,83,255,0.12); border-color: rgba(65,83,255,0.9);
+  transform: translateY(-1px);
+}
+
+/* Two-column small fields */
+.two-up { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+
+/* Checkbox row */
+.checkbox { display:flex; align-items:center; gap:10px; color:#e9ebf2; }
+.checkbox input { width:16px; height:16px; accent-color: var(--a); }
+
+/* Actions */
+.form-actions { display:flex; gap:12px; align-items:center; margin-top:6px; }
+.btn.primary { background: linear-gradient(90deg, var(--a), var(--b)); color:#fff; padding:11px 18px; border-radius:10px; box-shadow: 0 10px 30px rgba(65,83,255,0.18); border:0; }
+.btn.ghost { background: transparent; color:#fff; border:1px solid rgba(255,255,255,0.06); padding:10px 16px; border-radius:10px; }
+
+/* Side card */
+.order-side .side-card { background: linear-gradient(180deg, rgba(11,14,18,0.6), rgba(6,8,10,0.45)); padding:20px; border-radius:12px; color:#f4f5f7; border:1px solid rgba(255,255,255,0.03); box-shadow: 0 8px 24px rgba(2,4,8,0.6); }
+.order-side h3 { margin:0 0 8px; }
+.order-side ul { margin: 8px 0 12px 18px; }
+.order-side ul li { margin-bottom:8px; }
+
+/* Small helper text */
+.muted { color: rgba(255,255,255,0.66); }
+
+/* Responsive */
+@media (max-width: 880px) {
+  .order-grid { grid-template-columns: 1fr; }
+  .two-up { grid-template-columns: 1fr; }
+  .order-side { order: 2; }
+}
+
+/* Add subtle focus ring for accessibility */
+:focus { outline: none; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(65,83,255,0.12); border-radius:10px; }
