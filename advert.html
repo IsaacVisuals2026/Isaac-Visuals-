@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Isaac Visuals — Advert Preview</title>
+  <style>
+    :root{--bg:#0b0b0b;--accent:#ffcc33;--text:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:DM Sans,Inter,system-ui,Arial;background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;height:100vh}
+    .player{width:960px;max-width:95vw;background:#0f0f10;border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+    .stage{position:relative;height:540px;background:#111}
+    .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 8s ease}
+    .slide.visible{opacity:1;transform:scale(1)}
+
+    .overlay{position:absolute;left:0;right:0;bottom:0;padding:28px 36px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6));color:var(--text);display:flex;flex-direction:column;gap:10px}
+    h1{margin:0;font-size:34px;line-height:1.05}
+    p.lead{margin:0;opacity:.9}
+    .meta{display:flex;gap:12px;align-items:center;margin-top:8px}
+    .cta{margin-left:auto;background:var(--accent);color:#000;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+    .progress{height:6px;background:rgba(255,255,255,.06);display:flex}
+    .progress > div{flex:1;background:linear-gradient(90deg,var(--accent),#fff);transform:scaleX(0);transform-origin:left;transition:transform 3s linear}
+
+    .credits{padding:12px 18px;font-size:13px;color:#bbb;background:#060606;text-align:center}
+
+    @media (max-width:640px){.player{width:360px}.stage{height:640px}.overlay{padding:18px}.h1{font-size:20px}}
+  </style>
+</head>
+<body>
+  <div class="player" role="region" aria-label="Advert preview">
+    <div class="stage" id="stage">
+      <!-- Slides: these use the images already in your repo -->
+      <div class="slide" style="background-image:url('isaac-visuals-brand-mockup.png')"></div>
+      <div class="slide" style="background-image:url('special-sunday-service.jpg')"></div>
+      <div class="slide" style="background-image:url('prayer-word-retreat.jpg')"></div>
+      <div class="slide" style="background-image:url('student-forum-id-design.jpg')"></div>
+      <div class="slide" style="background-image:url('adunni-bag-branding.jpg')"></div>
+      <div class="slide" style="background-image:url('welcome-rollup-banner.jpg')"></div>
+      <div class="slide" style="background-image:url('graphic-design-promo.jpg')"></div>
+
+      <div class="overlay">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:42px;height:42px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700">IV</div>
+          <div>
+            <div style="font-size:12px;opacity:.85">ISAAC VISUALS</div>
+            <div style="font-size:11px;opacity:.7">Creative Designs • Visual Impact</div>
+          </div>
+          <a class="cta" id="cta" href="#order">Order on WhatsApp</a>
+        </div>
+        <h1 id="headline">Ideas deserve <em>great visuals.</em></h1>
+        <p class="lead">Bold, clean and memorable designs — flyers, branding, event graphics and print-ready artwork.</p>
+        <div class="meta">
+          <div><strong>07+</strong> Selected works</div>
+          <div><strong>∞</strong> Creative possibilities</div>
+        </div>
+        <div class="progress" id="progressBar">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits">Preview only — to export MP4 run the included make-advert.sh script (requires ffmpeg). Use this file to preview the timing and text.</div>
+  </div>
+
+  <script>
+    // Simple slideshow logic
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const bars = Array.from(document.querySelectorAll('#progressBar > div'));
+      const cta = document.getElementById('cta');
+      const duration = 3000; // ms per slide
+      let idx = 0;
+      function show(i){
+        slides.forEach((s,si)=> s.classList.toggle('visible', si===i));
+        bars.forEach((b,bi)=> { b.style.transition = `transform ${duration}ms linear`; b.style.transform = bi<=i? 'scaleX(1)':'scaleX(0)'; });
+      }
+      function next(){
+        show(idx);
+        idx = (idx+1) % slides.length;
+      }
+      show(0);
+      setInterval(next, duration);
+
+      // WhatsApp CTA — opens WhatsApp chat with prefilled message
+      cta.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const phone = '2347014597301'; // Isaac Visuals number in international format
+        const message = encodeURIComponent('Hello Isaac Visuals 👋%0AI would like to enquire about a design.');
+        window.open('https://wa.me/' + phone + '?text=' + message, '_blank');
+      });
+    })();
+  </script>
+</body>
+</html>
