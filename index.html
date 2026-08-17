@@ -185,6 +185,20 @@
               <input id="deadline" name="deadline" type="text" placeholder="When do you need it?">
             </label>
 
+            <label for="location">Location
+              <select id="location" name="location" required>
+                <option value="">Select location</option>
+                <option value="Remote / Online">Remote / Online</option>
+                <option value="Lagos (On-site)">Lagos (On-site)</option>
+                <option value="Abuja (On-site)">Abuja (On-site)</option>
+                <option value="Other">Other (specify)</option>
+              </select>
+            </label>
+
+            <label for="locationOther" id="locationOtherLabel" style="display:none;">Specify location
+              <input id="locationOther" name="locationOther" type="text" placeholder="Enter location">
+            </label>
+
             <button class="btn primary" type="submit">
               Place Order on WhatsApp
             </button>
@@ -194,6 +208,27 @@
     </section>
 
     <script>
+    // Show/hide "Other" location text input
+    document.addEventListener('DOMContentLoaded', function () {
+      const locationSelect = document.getElementById('location');
+      const locationOtherLabel = document.getElementById('locationOtherLabel');
+
+      function toggleOther() {
+        if (locationSelect.value === 'Other') {
+          locationOtherLabel.style.display = 'block';
+          document.getElementById('locationOther').required = true;
+        } else {
+          locationOtherLabel.style.display = 'none';
+          document.getElementById('locationOther').required = false;
+        }
+      }
+
+      if (locationSelect) {
+        locationSelect.addEventListener('change', toggleOther);
+        toggleOther();
+      }
+    });
+
     function placeOrder(event) {
       event.preventDefault();
 
@@ -201,6 +236,10 @@
       const design = document.getElementById("design").value;
       const details = document.getElementById("details").value;
       const deadline = document.getElementById("deadline").value || "Not specified";
+      const locationSelect = document.getElementById("location").value;
+      const locationOther = document.getElementById("locationOther").value;
+
+      const location = (locationSelect === 'Other') ? (locationOther || 'Not specified') : (locationSelect || 'Not specified');
 
       const message =
 `Hello Isaac Visuals 👋
@@ -211,11 +250,11 @@ Name: ${name}
 Design: ${design}
 Details: ${details}
 Deadline: ${deadline}
-Location:  ${Options} 
+Location: ${location}`;
 
       // Use the same phone number as the contact link (07014596301 -> international format 2347014596301)
       const whatsapp =
-        "https://wa.me/2347014597301?text=" +
+        "https://wa.me/2347014596301?text=" +
         encodeURIComponent(message);
 
       window.location.href = whatsapp;
